@@ -35,9 +35,9 @@ Calculate OLS slope for each patient, 25% Train/test split\s\s
 4) Tuning Mixed Model - highly difficult
 
 **Results**  
-*CNN performance:* 70.5% prediction of FVC slope within 95% CI for test data  
-*MLP performance:* 59% (approximate - update with final notebook results)  
-*Mixed Network:* 63% (approximate - update with final notebook results)  
+CNN performance: 70.5% prediction of FVC slope within 95% CI for test data  
+MLP performance: 59% (approximate - update with final notebook results)  
+Mixed Network: 63% (approximate - update with final notebook results)  
 
 **Further Work**  
 - Optimizing image recognition using Resnet or other pre-trained classifier with appropriate weights  
