@@ -8,17 +8,16 @@ All notebooks were run on an AWS EC2 P3.2xlarge Deep Learning AMI (Ubuntu 16.04)
 
 ## Overview of Mixed Data Input Neural Network - Adam Johns and Marcial Nava
 
-**Project Goal:** - predict a patient’s severity of decline in lung function based on a CT scan of their lungs and baseline clinical characteristics (FVC, age, gender, smoking status and Percent (a computed field which approximates the patient's FVC as a percent of the typical FVC for a person of similar characteristics)
+**Project Goal:** - Predict a patient’s severity of decline in lung function based on a CT scan of their lungs and baseline clinical characteristics (FVC, age, gender, smoking status and Percent (a computed field which approximates the patient's FVC as a percent of the typical FVC for a person of similar characteristics)
 
-**Model Goal:** predict the linear decay of FVC measurements within the 95% confidence interval of the actual least squares slope  
+**Defined Goal for Model:** Predict the linear decay of FVC measurements within the 95% confidence interval of the actual least squares slope  
   
 Pros of this approach - meaningful measurement that can be interpreted as likely rate of progression and can be visualized; also works well because follow-up and frequency of measurements is different for every patient  
-  
 Con of this approach - high degree of variability in measurements means that slope doesn't actually fit the measurements that well; more measurements at the start so line is skewed towards earlier measurements  
   
 
 **Data Processing** 
-Calculate OLS slope for each patient, 25% Train/test split\s\s
+Calculate OLS slope for each patient, 25% Train/test split
 
 **CNN** 
 1) DICOM image loading and processing function development
