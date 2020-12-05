@@ -8,15 +8,15 @@ All notebooks were run on an AWS EC2 P3.2xlarge Deep Learning AMI (Ubuntu 16.04)
 
 ## Mixed Data Input Neural Network - Adam Johns and Marcial Nava
 
-**Project Goal:** - Predict a patient’s severity of decline in lung function based on a CT scan of their lungs and baseline clinical characteristics (FVC, age, gender, smoking status and Percent (a computed field which approximates the patient's FVC as a percent of the typical FVC for a person of similar characteristics)
+**Project Goal:** - Predict a patient’s severity of decline in lung function based on a CT scan of their lungs and baseline clinical characteristics (FVC, age, gender, smoking status and Percent (a computed field which approximates the patient's FVC as a percent of the typical FVC for a person of similar characteristics). Because of mixed data inputs we chose to use a mixed input neural network composed of a convolutional neural network (CNN) and mulilayer perceptron (MLP) with regression kernels.  
 
-**Defined Goal for Model:** Predict the linear decay of FVC measurements within the 95% confidence interval of the actual least squares slope  
+**Model Outcome:** Predict the linear decay of FVC measurements within the 95% confidence interval of the actual least squares slope  
   
 <ins>Pros of this approach</ins> - Meaningful measurement that can be interpreted as likely rate of progression and can be visualized; also works well because follow-up and frequency of measurements is different for every patient  
 <ins>Con of this approach</ins> - High degree of variability in measurements means that slope doesn't actually fit the measurements that well; more measurements at the start so line is skewed towards earlier measurements  
   
 
-**Data Processing** 
+**Data Processing**  
 Calculate OLS slope for each patient, 25% Train/test split
 
 **CNN Development Steps**  
@@ -34,9 +34,9 @@ Calculate OLS slope for each patient, 25% Train/test split
 4) Tuning Mixed Model - highly difficult
 
 **Results**  
-CNN performance: 70.5% prediction of FVC slope within 95% CI for test data  
-MLP performance: 59% (approximate - update with final notebook results)  
-Mixed Network: 63% (approximate - update with final notebook results)  
+- CNN performance: 70.5% prediction of FVC slope within 95% CI for test data  
+- MLP performance: 59% (approximate - update with final notebook results)  
+- Mixed Network: 63% (approximate - update with final notebook results)  
 
 **Further Work**  
 - Optimizing image recognition using Resnet or other pre-trained classifier with appropriate weights  
@@ -45,4 +45,5 @@ Mixed Network: 63% (approximate - update with final notebook results)
 - Determining when mixed networks are better than individual approaches - here it seems the perceptron performance reduced the CNN; for what kinds of problems or data sources would it improve outcomes?  
 
 **Conclusions**  
+  
 This task is particularly challenging - limited data, limited measurements, sparse info on baseline characteristics. CNN performance was impressive and improved over tabular data; approaching range of clinical utility but still likely too low in practice; would need to be validated on larger datasets. Nonetheless CNN improved on tabular data only. Should be considered for use alongside demographic/patient characteristics for tasks that involve informed predictions of likely disease progression at baseline and understanding/segmenting patients.
