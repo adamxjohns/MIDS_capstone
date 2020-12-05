@@ -6,9 +6,11 @@ This project was based on the Kaggle competition "OSIC Pulmonary Fibrosis Progre
 
 All notebooks were run on an AWS EC2 P3.2xlarge Deep Learning AMI (Ubuntu 16.04) Version 36.0 instance using a TensorFlow 2.3 with Python3 (CUDA 10.2 and Intel MKL-DNN) Environment.
 
-## Overview of CNN/Mixed Data Input Network
+## Overview of Mixed Data Input Neural Network - Adam Johns and Marcial Nava
 
-**Goal:** - predict the linear decay of FVC measurements within the 95% confidence interval of the actual least squares slope
+**Project Goal:** - predict a patient’s severity of decline in lung function based on a CT scan of their lungs and baseline clinical characteristics (FVC, age, gender, smoking status and Percent (a computed field which approximates the patient's FVC as a percent of the typical FVC for a person of similar characteristics)
+
+**Model Goal:** predict the linear decay of FVC measurements within the 95% confidence interval of the actual least squares slope
 Pros of this approach - meaningful measurement that can be interpreted as likely rate of progression and can be visualized; also works well because follow-up and frequency of measurements is different for every patient
 Con of this approach - high degree of variability in measurements means that slope doesn't actually fit the measurements that well; more measurements at the start so line is skewed towards earlier measurements
 
@@ -35,9 +37,10 @@ MLP performance: 59% (approximate - update with final notebook results)
 Mixed Network: 63% (approximate - update with final notebook results)
 
 **Further Work**
-Optimizing image recognition using Resnet or other pre-trained classifier with appropriate weights
-Better approaches to determine if tabular data could be more effectively used i.e. ensemble models
-Determining when mixed networks are better than individual approaches - here it seems the perceptron performance reduced the CNN; for what kinds of problems would it improve outcomes?
+- Optimizing image recognition using Resnet or other pre-trained classifier with appropriate weights
+- Better approaches to determine if tabular data could be more effectively used i.e. ensemble models
+- Exploring data to find a better parametric approximation of real FVC progression or classification problem (i.e. quartiles)
+- Determining when mixed networks are better than individual approaches - here it seems the perceptron performance reduced the CNN; for what kinds of problems or data sources would it improve outcomes?
 
 **Conclusions**
-This task is particularly challenging - limited data, limited measurements, sparse info on baseline characteristics. CNN performance was impressive and improved over tabular data. Imaging should definitely be considered for use alongside demographic/patient characteristics for tasks that involve informed predictions of likely disease progression at baseline and understanding/segmenting patients.
+This task is particularly challenging - limited data, limited measurements, sparse info on baseline characteristics. CNN performance was impressive and improved over tabular data; approaching range of clinical utility but still likely too low in practice; would need to be validated on larger datasets. Nonetheless CNN improved on tabular data only. Should be considered for use alongside demographic/patient characteristics for tasks that involve informed predictions of likely disease progression at baseline and understanding/segmenting patients.
