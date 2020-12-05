@@ -6,7 +6,7 @@ This project was based on the Kaggle competition "OSIC Pulmonary Fibrosis Progre
 
 All notebooks were run on an AWS EC2 P3.2xlarge Deep Learning AMI (Ubuntu 16.04) Version 36.0 instance using a TensorFlow 2.3 with Python3 (CUDA 10.2 and Intel MKL-DNN) Environment.
 
-## Overview of Mixed Data Input Neural Network - Adam Johns and Marcial Nava
+## Mixed Data Input Neural Network - Adam Johns and Marcial Nava
 
 **Project Goal:** - Predict a patient’s severity of decline in lung function based on a CT scan of their lungs and baseline clinical characteristics (FVC, age, gender, smoking status and Percent (a computed field which approximates the patient's FVC as a percent of the typical FVC for a person of similar characteristics)
 
