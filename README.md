@@ -19,7 +19,7 @@ All notebooks were run on an AWS EC2 P3.2xlarge Deep Learning AMI (Ubuntu 16.04)
 **Data Processing** 
 Calculate OLS slope for each patient, 25% Train/test split
 
-**CNN Development Steps** 
+**CNN Development Steps**  
 1) DICOM image loading and processing function development
 2) First CNN - describe architecture and initial performance
 3) Functions to assess results - b/c the MAE loss is hard to interpret and the test data from the Kaggle competition only includes one FVC measurement per patient. Functions take a fixed number of images, calculate slope for each image, and deliver a final slope as mean of all predicted slopes from patient images
