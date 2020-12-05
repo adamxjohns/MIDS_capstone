@@ -1,6 +1,6 @@
 # Predicting Pulmonary Fibrosis FVC Change Over Time from Baseline Patient Characteristics and CT Scans
 
-### UC Berkeley Spring 2020 MIDS Capstone Project by Adam Johns, Marcial Nava and Tosin Akinpelu
+### UC Berkeley Spring 2020 MIDS Capstone Project
 
 This project was based on the Kaggle competition "OSIC Pulmonary Fibrosis Progression: Predict lung function decline" available at https://www.kaggle.com/c/osic-pulmonary-fibrosis-progression
 
@@ -12,8 +12,8 @@ All notebooks were run on an AWS EC2 P3.2xlarge Deep Learning AMI (Ubuntu 16.04)
 
 **Defined Goal for Model:** Predict the linear decay of FVC measurements within the 95% confidence interval of the actual least squares slope  
   
-Pros of this approach - meaningful measurement that can be interpreted as likely rate of progression and can be visualized; also works well because follow-up and frequency of measurements is different for every patient  
-Con of this approach - high degree of variability in measurements means that slope doesn't actually fit the measurements that well; more measurements at the start so line is skewed towards earlier measurements  
+<ins>Pros of this approach<ins> - Meaningful measurement that can be interpreted as likely rate of progression and can be visualized; also works well because follow-up and frequency of measurements is different for every patient  
+<ins>Con of this approach<ins> - High degree of variability in measurements means that slope doesn't actually fit the measurements that well; more measurements at the start so line is skewed towards earlier measurements  
   
 
 **Data Processing** 
