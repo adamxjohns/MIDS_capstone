@@ -47,7 +47,12 @@ As a personal goal, as individuals with some background in clinical trial analys
  ### CT Scan EDA  
    
  Wrapping our heads around the CT Scans took us a little while. CTs use a .dicom image format. They're composed of a number of ordered 2d, 512x512 slices which, when put together, form a 3d image. Looking at a series of images over time can show changes in body position and can allow you to get a sense of the differing shape of the lungs during inhalation and exhalation.
- 
+  
+![Tabular EDA](/JPGs/multi_slice.png)  
+  
+The standard unit format is Voxels, but by converting to Houndsfield units the scale of the individual measurement can actually be interpreted to show the tissue composition of the picture, with an HU of zero indicating water at standard temperature and pressure, -1000 indicating air, and +2000 indicating dense bone. For our modelling we converted all the image values to HUs.  
+  
+
   
  
 **Project Goal:** - Predict a patient’s severity of decline in lung function based on a CT scan of their lungs and baseline clinical characteristics (FVC, age, gender, smoking status and Percent (a computed field which approximates the patient's FVC as a percent of the typical FVC for a person of similar characteristics). Because of mixed data inputs we chose to use a mixed input neural network composed of a convolutional neural network (CNN) and mulilayer perceptron (MLP) with regression kernels.  
