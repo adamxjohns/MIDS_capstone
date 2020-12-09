@@ -8,6 +8,8 @@ All notebooks were run on an AWS EC2 P3.2xlarge Deep Learning AMI (Ubuntu 16.04)
 
 ## Background
 Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lung tissue becomes damaged and scarred. As the disease worsens, patients become progressively more short of breath. The disease progresses at different rates and it is difficult to define a patient's likely prognosis early on in the disease.  
+
+## Project Goal
   
  Our goal for this project was to develop an approach to predict decline in lung function as measured by Forced Vital Capacity (FVC) over time based on clinical/demographic characteristics  baseline CT scan images. Reasoning that the clinical usefulness of this algorithm would increase the closer to initial diagnosis it could be applied, we aimed to make use of as little follow-up information as possible and, ideally, to use baseline information only.
  
@@ -17,9 +19,15 @@ Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lu
  
  ### Understanding the Data
  
- The OISC Pulmonary Fibrosis dataset includes data on 176 patients, and is a mixture of imaging, one-time demographic measurements assessed at baseline, and lung function data provided as time series measured at specified weeks afer baseline.
+ The OISC Pulmonary Fibrosis dataset includes data on 176 patients, and is a mixture of imaging, one-time demographic measurements assessed at baseline, and lung function data provided as time series measured at specified weeks afer baseline.  
+   
 ![Data Schematic](/JPGs/data_schematic.png)
-
+  
+ Looking at FVC over time, the data follows a mostly downward trend, however it's important to note that if fluctuates up and down depending on the week. Additionally, not all patients reached the end of the follow-up period with a lower FVC than baseline, meaning we can't assume a downward trend for everyone.
+   
+ ![FVC Over Time](/JPGs/FVC_per_wk.png)
+  
+ 
 **Project Goal:** - Predict a patient’s severity of decline in lung function based on a CT scan of their lungs and baseline clinical characteristics (FVC, age, gender, smoking status and Percent (a computed field which approximates the patient's FVC as a percent of the typical FVC for a person of similar characteristics). Because of mixed data inputs we chose to use a mixed input neural network composed of a convolutional neural network (CNN) and mulilayer perceptron (MLP) with regression kernels.  
 
 **Model Outcome:** Predict the linear decay of FVC measurements within the 95% confidence interval of the actual least squares slope  
