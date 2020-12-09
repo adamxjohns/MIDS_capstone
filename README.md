@@ -63,7 +63,7 @@ The number ranges from 12 slices per patient to 1018, with a median of 94.
 
 ## Mixed Input Neural Network Model
 
-### Defining the Outcome
+### Defining the Model Outcome and Metrics
 
 When definingng the endpoint for our model, a number of factors were important. First, in keeping with the original Kaggle competition we wanted to see how closely we could predict the specific course of the disease and how close we could get to determining an actual FVC measurement for a given point in time. This ruled out a classification approach and directed us toward regression. Secondly, because patient measurements and follow up are not uniform, we wanted to choose an endpoint to model that incorporates time as a function.  
 This approach has a few pros and cons, as follows:  
