@@ -21,9 +21,8 @@ As a personal goal, as individuals with some background in clinical trial analys
  
  The OISC Pulmonary Fibrosis dataset includes data on 176 patients, and is a mixture of imaging, one-time demographic measurements assessed at baseline, and lung function data provided as time series measured at specified weeks afer baseline.  
    
-![Data Schematic](/JPGs/data_structure.png)
+ ![Data Structure](/JPGs/data_structure.png)  
   
-
  Looking at FVC over time, the data follows a mostly downward trend, however it's important to note that if fluctuates up and down depending on the week. Additionally, not all patients reached the end of the follow-up period with a lower FVC than baseline, meaning we can't assume a downward trend for everyone.
    
  ![FVC Over Time](/JPGs/FVC_per_wk.png)  
@@ -32,8 +31,8 @@ As a personal goal, as individuals with some background in clinical trial analys
    
  Now let's examine the distribution of our tabular variables:
  
- ![Tabular EDA](/JPGs/tabular_EDA.png)
- 
+  ![Tabular EDA](/JPGs/tabular_eda.png)  
+  
  A few key observations jump out:
  - We have very few females in the group
  
