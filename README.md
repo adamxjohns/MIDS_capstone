@@ -23,7 +23,6 @@ As a personal goal, as individuals with some background in clinical trial analys
    
 ![Data Schematic](/JPGs/data_structure.png)
   
-
  Looking at FVC over time, the data follows a mostly downward trend, however it's important to note that if fluctuates up and down depending on the week. Additionally, not all patients reached the end of the follow-up period with a lower FVC than baseline, meaning we can't assume a downward trend for everyone.
    
  ![FVC Over Time](/JPGs/FVC_per_wk.png)  
