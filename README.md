@@ -6,7 +6,19 @@ This project was based on the Kaggle competition "OSIC Pulmonary Fibrosis Progre
 
 All notebooks were run on an AWS EC2 P3.2xlarge Deep Learning AMI (Ubuntu 16.04) Version 36.0 instance using a TensorFlow 2.3 with Python3 (CUDA 10.2 and Intel MKL-DNN) Environment.
 
-## Mixed Data Input Neural Network - Adam Johns and Marcial Nava
+## Background
+Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lung tissue becomes damaged and scarred. As the disease worsens, patients become progressively more short of breath. The disease progresses at different rates and it is difficult to define a patient's likely prognosis early on in the disease.  
+  
+ Our goal for this project was to develop an approach to predict decline in lung function as measured by Forced Vital Capacity (FVC) over time based on clinical/demographic characteristics  baseline CT scan images. Reasoning that the clinical usefulness of this algorithm would increase the closer to initial diagnosis it could be applied, we aimed to make use of as little follow-up information as possible and, ideally, to use baseline information only.
+ 
+ The likely end users of this approach would be clinicians who have access to patient CT scans and the required knowledge to interpret results and give patients counselling and direction based on the information. Such information could be used to direct treatment decisions, counsel patients, and potentially to direct recruitment for future clinical trials.
+ 
+ More broadly, as a group with some background in clinical trial analysis and biostatistics but very little knowledge of computer vision, we wanted to brush up on our knowledge of computer vision and get a sense of how combining imaging with clinical/demographic data can add to the task of predicting disease prognosis. 
+ 
+ ### Understanding the Data
+ 
+ The OISC Pulmonary Fibrosis dataset includes data on 176 patients, and is a mixture of imaging, one-time demographic measurements assessed at baseline, and lung function data provided as time series measured at specified weeks afer baseline.
+
 
 **Project Goal:** - Predict a patient’s severity of decline in lung function based on a CT scan of their lungs and baseline clinical characteristics (FVC, age, gender, smoking status and Percent (a computed field which approximates the patient's FVC as a percent of the typical FVC for a person of similar characteristics). Because of mixed data inputs we chose to use a mixed input neural network composed of a convolutional neural network (CNN) and mulilayer perceptron (MLP) with regression kernels.  
 
