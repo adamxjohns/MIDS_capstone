@@ -17,7 +17,9 @@ Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lu
  
 As a personal goal, as individuals with some background in clinical trial analysis and biostatistics but very little experience in computer vision, we wanted to practice working with images and learn how combinng inaging with clinical/demographic data can enhance the task of predicting disease prognosis. 
  
- ### Understanding the Data
+ ## Understanding the Data  
+   
+  ### Tabular Data EDA
  
  The OISC Pulmonary Fibrosis dataset includes data on 176 patients, and is a mixture of imaging, one-time demographic measurements assessed at baseline, and lung function data provided as time series measured at specified weeks afer baseline.  
    
@@ -59,15 +61,16 @@ The number ranges from 12 slices per patient to 1018, with a median of 94.
   
   
 
-## Model Approach
-  
- 
-**Project Goal:** - Predict a patient’s severity of decline in lung function based on a CT scan of their lungs and baseline clinical characteristics (FVC, age, gender, smoking status and Percent (a computed field which approximates the patient's FVC as a percent of the typical FVC for a person of similar characteristics). Because of mixed data inputs we chose to use a mixed input neural network composed of a convolutional neural network (CNN) and mulilayer perceptron (MLP) with regression kernels.  
+## Mixed Input Neural Network Model
 
-**Model Outcome:** Predict the linear decay of FVC measurements within the 95% confidence interval of the actual least squares slope  
-  
-<ins>Pros of this approach</ins> - Meaningful measurement that can be interpreted as likely rate of progression and can be visualized; also works well because follow-up and frequency of measurements is different for every patient  
-<ins>Con of this approach</ins> - High degree of variability in measurements means that slope doesn't actually fit the measurements that well; more measurements at the start so line is skewed towards earlier measurements  
+### Defining the Outcome
+
+When definingng the endpoint for our model, a number of factors were important. First, in keeping with the original Kaggle competition we wanted to see how closely we could predict the specific course of the disease and how close we could get to determining an actual FVC measurement for a given point in time. This ruled out a classification approach and directed us toward regression. Secondly, because patient measurements and follow up are not uniform, we wanted to choose an endpoint to model that incorporates time as a function. This approach has a few pros and cons, as follows:
+
+| **Model Outcome** | Predict the linear decay of FVC measurements as expressed by the least squares slope of each patient                                                                                          |
+|------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|          **Pros** | - Meaningful measurement that can be easily interpreted and be visualized - Avoids issue of non-uniform measurement times and follow up                                                       |
+|          **Cons** | - High degree of variability in measurements means that slope doesn't actually fit the measurements that well - More measurements at the start so line is skewed towards earlier measurements | 
   
 
 **Data Processing**  
