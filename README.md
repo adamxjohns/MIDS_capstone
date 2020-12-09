@@ -18,7 +18,7 @@ Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lu
  ### Understanding the Data
  
  The OISC Pulmonary Fibrosis dataset includes data on 176 patients, and is a mixture of imaging, one-time demographic measurements assessed at baseline, and lung function data provided as time series measured at specified weeks afer baseline.
-
+![Data Schematic](/JPGs/data_schematic.png)
 
 **Project Goal:** - Predict a patient’s severity of decline in lung function based on a CT scan of their lungs and baseline clinical characteristics (FVC, age, gender, smoking status and Percent (a computed field which approximates the patient's FVC as a percent of the typical FVC for a person of similar characteristics). Because of mixed data inputs we chose to use a mixed input neural network composed of a convolutional neural network (CNN) and mulilayer perceptron (MLP) with regression kernels.  
 
