@@ -54,7 +54,7 @@ The standard unit format is Voxels, but by converting to Houndsfield units (HUs)
 
 We have 33,025 slice images available across our 176 patients. Looking at the distribution of the number of slices available per patient, once again we can see that it varies quite widely:
 
-![CT Slices per Patient](/JPGs/ct_slice_per_pt)  
+![CT Slices per Patient](/JPGs/ct_slice_per_pt.png)  
   
 The number ranges from 12 slices per patient to 1018, with a median of 94.  
   
