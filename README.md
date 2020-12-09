@@ -50,9 +50,17 @@ As a personal goal, as individuals with some background in clinical trial analys
   
 ![Tabular EDA](/JPGs/multi_slice.png)  
   
-The standard unit format is Voxels, but by converting to Houndsfield units the scale of the individual measurement can actually be interpreted to show the tissue composition of the picture, with an HU of zero indicating water at standard temperature and pressure, -1000 indicating air, and +2000 indicating dense bone. For our modelling we converted all the image values to HUs.  
+The standard unit format is Voxels, but by converting to Houndsfield units (HUs) the scale of the individual measurement can actually be interpreted to show the tissue composition of the picture, with an HU of zero indicating water at standard temperature and pressure, -1000 indicating air, and +2000 indicating dense bone. For our modelling we converted all the image values to HUs.  
+
+We have 33,025 slice images available across our 176 patients. Looking at the distribution of the number of slices available per patient, once again we can see that it varies quite widely:
+
+![CT Slices per Patient](/JPGs/ct_slice_per_pt)  
+  
+The number ranges from 12 slices per patient to 1018, with a median of 94.  
+  
   
 
+## Model Approach
   
  
 **Project Goal:** - Predict a patient’s severity of decline in lung function based on a CT scan of their lungs and baseline clinical characteristics (FVC, age, gender, smoking status and Percent (a computed field which approximates the patient's FVC as a percent of the typical FVC for a person of similar characteristics). Because of mixed data inputs we chose to use a mixed input neural network composed of a convolutional neural network (CNN) and mulilayer perceptron (MLP) with regression kernels.  
