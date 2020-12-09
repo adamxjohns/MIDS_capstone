@@ -28,6 +28,12 @@ Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lu
  ![FVC Over Time](/JPGs/FVC_per_wk.png)  
    
  Number of observations per patient ranges between 6 and 10, with a mean of 8.8. Measurement intervals are not regular, meaning we don't have a common timepoint for all patients at which we can predict a single outcome value.  
+   
+ Now let's examine the distribution of our tabular variables:
+ 
+ ![Tabular EDA](/JPGs/tabular_EDA.png)
+ 
+   
   
  
 **Project Goal:** - Predict a patient’s severity of decline in lung function based on a CT scan of their lungs and baseline clinical characteristics (FVC, age, gender, smoking status and Percent (a computed field which approximates the patient's FVC as a percent of the typical FVC for a person of similar characteristics). Because of mixed data inputs we chose to use a mixed input neural network composed of a convolutional neural network (CNN) and mulilayer perceptron (MLP) with regression kernels.  
