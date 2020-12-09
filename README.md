@@ -13,9 +13,9 @@ Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lu
   
  Our goal for this project was to develop an approach to predict decline in lung function as measured by Forced Vital Capacity (FVC) over time based on clinical/demographic characteristics  baseline CT scan images. Reasoning that the clinical usefulness of this algorithm would increase the closer to initial diagnosis it could be applied, we aimed to make use of as little follow-up information as possible and, ideally, to use baseline information only.
  
- The likely end users of this approach would be clinicians who have access to patient CT scans and the required knowledge to interpret results and give patients counselling and direction based on the information. Such information could be used to direct treatment decisions, counsel patients, and potentially to direct recruitment for future clinical trials.
+ The likely end users of this work would be clinicians who have access to patient CT scans and the required knowledge to interpret results and give patients counselling and direction based on the information. Such information could be used to direct treatment decisions, counsel patients, and potentially to direct recruitment for future clinical trials.
  
- More broadly, as a group with some background in clinical trial analysis and biostatistics but very little knowledge of computer vision, we wanted to brush up on our knowledge of computer vision and get a sense of how combining imaging with clinical/demographic data can add to the task of predicting disease prognosis. 
+As a personal goal, as individuals with some background in clinical trial analysis and biostatistics but very little experience in computer vision, we wanted to practice working with images and learn how combinng inaging with clinical/demographic data can enhance the task of predicting disease prognosis. 
  
  ### Understanding the Data
  
@@ -23,6 +23,7 @@ Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lu
    
 ![Data Schematic](/JPGs/data_structure.png)
   
+
  Looking at FVC over time, the data follows a mostly downward trend, however it's important to note that if fluctuates up and down depending on the week. Additionally, not all patients reached the end of the follow-up period with a lower FVC than baseline, meaning we can't assume a downward trend for everyone.
    
  ![FVC Over Time](/JPGs/FVC_per_wk.png)  
@@ -33,7 +34,20 @@ Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lu
  
  ![Tabular EDA](/JPGs/tabular_EDA.png)
  
+ A few key observations jump out:
+ - We have very few females in the group
+ 
+ - Most of the patients are ex-smokers and current smokers are very rare
+ 
+ - Age looks to be quite normally distributed around 65-70
+ 
+ - The most common measurement time was 50-60 weeks 
    
+   
+ ### CT Scan EDA  
+   
+ Wrapping our heads around the CT Scans took us a little while. CTs use a .dicom image format. They're composed of a number of ordered 2d, 512x512 slices which, when put together, form a 3d image. Looking at a series of images over time can show changes in body position and can allow you to get a sense of the differing shape of the lungs during inhalation and exhalation.
+ 
   
  
 **Project Goal:** - Predict a patient’s severity of decline in lung function based on a CT scan of their lungs and baseline clinical characteristics (FVC, age, gender, smoking status and Percent (a computed field which approximates the patient's FVC as a percent of the typical FVC for a person of similar characteristics). Because of mixed data inputs we chose to use a mixed input neural network composed of a convolutional neural network (CNN) and mulilayer perceptron (MLP) with regression kernels.  
