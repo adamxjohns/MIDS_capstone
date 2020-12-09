@@ -31,7 +31,7 @@ As a personal goal, as individuals with some background in clinical trial analys
    
  Now let's examine the distribution of our tabular variables:
  
-  ![Tabular EDA](/JPGs/tabular_eda.png)  
+  ![Tabular EDA](/JPGs/tabular_EDA.png)  
   
  A few key observations jump out:
  - We have very few females in the group
