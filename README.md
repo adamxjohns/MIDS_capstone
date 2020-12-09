@@ -77,7 +77,7 @@ This approach has a few pros and cons, as follows:
  
 On an individual patient basis, we'd be trying to predict a line as close to the true OLS slope (in blue below) as possible, and scoring our results on the basis of how many we got within the CIs (in red).  
  
- 
+ ![Model Target](/JPGs/target.png)  
 
 
 **Data Processing**  
