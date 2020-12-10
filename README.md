@@ -141,11 +141,11 @@ Lastly, the final surprise here was that the tabular data did not improve the pe
 
 **Some of our Best Model's Successful Predictions**  
   
-![Model Target](/JPGs/successes.png)  
+
   
 **And a few of its noble failures**  
   
-![Model Target](/JPGs/failures.png)  
+ 
   
 
 
