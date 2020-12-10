@@ -98,11 +98,11 @@ The full data processing pipeline is included in our notebook repo, but here's a
   
   The most important thing to note about our CNN structure is that it's very much a NOOB CNN. It takes 2d slices as the the input shape and applies 16-32-64 filters with relu activation, batch normalization and Max Pooling 2D, then Flatten, Dense(16), relu, another batch normalization, and dropout, another Dense(4) layer and a linear output layer. This structure is in no way optimized for medical imaging and from what we can understand (which is limited) it's basically an all-purpose detector of stuff in images.  
   
-**MLP**
+<ins>**MLP**</ins>
   
 According to the internet, this is how you do regression in Keras.  
   
-**Concatenate Layer and Combined Model**
+<ins>**Concatenate Layer and Mixed Input Model**<ins>
 
   The Mixed Network involves taking the output of the second-to-last layers of the CNN and MLP prior to the linear output layer and concatenating them; then applying another dense(4) layer with relu activation and a linear output layer.  
   
