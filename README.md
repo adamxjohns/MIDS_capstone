@@ -52,9 +52,13 @@ To explore feature importance on Future FVC values, we explored various of featu
    
  ### CT Scan EDA 
    
- Wrapping our heads around the CT Scans took us a little while. CTs use a .dicom image format. They're composed of a number of ordered 2d, 512x512 slices which, when put together, form a 3d image. Looking at a series of images over time can show changes in body position and can allow you to get a sense of the differing shape of the lungs during inhalation and exhalation.
+ Wrapping our heads around the CT Scans took us a little while. CTs use a .dicom image format. They're composed of a number of ordered 2d, 512x512 slices which, when put together, form a 3d image.  
+ 
+ ![CT image slices](/JPGs/multi_slice.png)  
+ 
+ Looking at a series of images over time can show changes in body position and can allow you to get a sense of the differing shape of the lungs during inhalation and exhalation.  
   
-![Tabular EDA](/JPGs/multi_slice.png)  
+![CT animation](/JPGs/gif_ID00165637202237320314458.gif)  
   
 The standard unit format is Voxels, but by converting to Houndsfield units (HUs) the scale of the individual measurement can actually be interpreted to show the tissue composition of the picture, with an HU of zero indicating water at standard temperature and pressure, -1000 indicating air, and +2000 indicating dense bone. For our modelling we converted all the image values to HUs.  
 
