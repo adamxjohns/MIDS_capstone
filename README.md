@@ -175,7 +175,7 @@ While we learned a lot from this exercise and were surprised by the performance 
 - Exploring other techniques for lung segmentation - To answer the question of whether our masking algorithm was bad, or whether there actually are any other features outside the lungs which were adding predictive value.
 
 
-**Conclusions**  
+### Conclusions
   
 All and all this was an interesting challenge. While we undoubtedly chose a challenging topic for our first real attempt at computer vision, we were nonetheless intrigued by the results and learned a great deal. It's fair to say that these results are not ready for clinical utilization. From the clinician's perspective, a model with 70% accuracy would likely only be usable if it was possible to determine in advance which kinds of patients could be expected to be misclassified, which was beyond our work. That said, we were intrigued that a CNN alone was able to correctly predict course of disease within the 95% CI for 7/10ths of our test patients.  
   
