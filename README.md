@@ -145,7 +145,7 @@ Lastly, the final surprise here was that the tabular data did not improve the pe
   
 **And a few of its noble failures**  
   
-![Model Target](/JPGs/failure.png)  
+![Model Target](/JPGs/failures.png)  
   
 
 
