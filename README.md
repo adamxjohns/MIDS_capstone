@@ -60,7 +60,7 @@ To explore feature importance on Future FVC values, we explored various of featu
   
 ![CT animation](/JPGs/gif_ID00165637202237320314458.gif)  
   
-The standard unit format is Voxels, but by converting to Houndsfield units (HUs) the scale of the individual measurement can actually be interpreted to show the tissue composition of the picture, with an HU of zero indicating water at standard temperature and pressure, -1000 indicating air, and +2000 indicating dense bone. For our modelling we converted all the image values to HUs.  
+The converting the standard CT measurement of Voxels to Houndsfield units (HUs) the scale of the individual measurement can actually be interpreted to show the tissue composition of the picture, with an HU of zero indicating water at standard temperature and pressure, -1000 indicating air, and +2000 indicating dense bone. For our modelling we converted all the image values to HUs.  
 
 We have 33,025 slice images available across our 176 patients. Looking at the distribution of the number of slices available per patient, once again we can see that it varies quite widely:
 
@@ -174,4 +174,5 @@ This task is particularly challenging - limited data, limited measurements, spar
 ‪
  François Collet (2017). "Deep Learning with Python". Manning Publications.
  DICOM Processing and Segmentation in Python. https://www.raddq.com/dicom-processing-segmentation-visualization-in-python/
+ Houndsfield Units - Scale of HU, CT numbers. http://radclass.mudr.org/content/hounsfield-units-scale-hu-ct-numbers
 
