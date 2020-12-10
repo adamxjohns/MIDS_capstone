@@ -91,11 +91,11 @@ The full data processing pipeline is included in our notebook repo, but here's a
 
 ### Model Components  
   
-The structure of our mixed data neural network includes a convolutional neural network to learn features from the images, a multi-layer perceptron to do Keras's version of linear regression on the tabular data, and a concatenate layer to combine the two outputs. We chose Keras because we are noobs. Rather than attempt a 3d CNN on full images, which was too advanced for us, we decided to randomly sample 2d slices associated with the corresponding target value for each patient for training, and use the average of the predicted slopes for that patient's scan for inference. When performing inference to test 
+The structure of our mixed data neural network includes a convolutional neural network to learn features from the images, a multi-layer perceptron to do Keras's version of linear regression on the tabular data, and a concatenate layer to combine the two outputs. We chose Keras because we are noobs.
   
 **CNN**  
   
-  The most important thing to note about our CNN structure is that it's very much a NOOB CNN. It takes the input shape and applies 16-32-64 filters with relu activation, batch normalization and Max Pooling 2D, then Flatten, Dense(16), relu, another batch normalization, and dropout. It includes a linear output layer if run alone, or a Dense(4) layer to match the output of the MLP for the mixed model. This structure is in no way optimized for medical imaging and from what I can understand (which is limited) it's basically an all-purpose detector of stuff in images. The one thing to note here is that our original structure (another all purpose image-stuff-detector) did not apply batch normalization and thus did not actually learn. Adding this in seems to have done the trick.  
+  The most important thing to note about our CNN structure is that it's very much a NOOB CNN. It takes 2d slices as the the input shape and applies 16-32-64 filters with relu activation, batch normalization and Max Pooling 2D, then Flatten, Dense(16), relu, another batch normalization, and dropout, another Dense(4) layer and a linear output layer. This structure is in no way optimized for medical imaging and from what I can understand (which is limited) it's basically an all-purpose detector of stuff in images. The one thing to note here is that the original CNN structure we tested (another all purpose image-stuff-detector) did not apply batch normalization and thus did not actually learn. Adding this in seems to have done the trick.  
   
 **MLP**
   
