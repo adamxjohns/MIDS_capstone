@@ -133,14 +133,20 @@ After much arduous toil, our best model was **accurately able to predict the slo
 |              **Mixed Input** | 65.9% (29 of 44)                                                  |
   
 There were a number of interesting findings from these results. First, regarding the MLP, while the model was learning and predicting distinct slopes for each set of tabular data, it didn't do great. This likely reflects the findings from our earlier machine learning experiments that the amount of explained variance in the FVC decay from this tabular data alone is low.  
+  
 Regarding the masking, while our initial hypothesis was that the masking would improve the results by limiting training to the disease site only, it actually reduced the success of the predictions significantly. We aren't certain why this is, but two possible hypotheses are that either the masking algorithm itself could stand to be improved; or, alternately that the model is learning from other features outside the lungs. This is a particularly intriguting hypothesis as theoretically other morphological features that the CNN can detect could be associated with better or worse prediction.  
-Lastly, the final surprise here was that the tabular data did not improve the performance beyond the CNN on its own. One straightforward hypothesis to explain this is that the poor performance of the MLP didn't add much to the CNN, and given that our network does not apply any weighting to the individual results the drawbacks from the MLP performance outweighed the information gain. 
+  
+Lastly, the final surprise here was that the tabular data did not improve the performance beyond the CNN on its own. One straightforward hypothesis to explain this is that the poor performance of the MLP didn't add much to the CNN, and given that our network does not apply any weighting to the individual results the drawbacks from the MLP performance outweighed the information gain.  
+  
 
-**Some of our Best Model's Successful Predictions**
+**Some of our Best Model's Successful Predictions**  
+  
 ![Model Target](/JPGs/successes.png)  
   
 **And a few of its noble failures**  
+  
 ![Model Target](/JPGs/failure.png)  
+  
 
 
 
