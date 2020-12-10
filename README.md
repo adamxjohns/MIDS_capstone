@@ -70,8 +70,11 @@ The number ranges from 12 slices per patient to 1018, with a median of 94.
   
   
 
-## Mixed Input Neural Network Model
-
+## Mixed Input Neural Network Model  
+  
+ Our approach was inspired by Laura Lewis's work on [predicting accident locations with mixed neural networks](https://heartbeat.fritz.ai/building-a-mixed-data-neural-network-in-keras-to-predict-accident-locations-d51a63b738cf).  
+  
+  
 ### Defining the Model Outcome and Metrics
 
 When definingng the endpoint for our model, a number of factors were important. First, in keeping with the original Kaggle competition we wanted to see how closely we could predict the specific course of the disease and how close we could get to determining an actual FVC measurement for a given point in time. This ruled out a classification approach and directed us toward regression. Secondly, because patient measurements and follow up are not uniform, we wanted to choose an endpoint to the model that incorporates time as a function.  
@@ -159,16 +162,19 @@ Lastly, the final surprise here was that the tabular data did not improve the pe
 
 
 
-**Further Work**  
-- Optimizing image recognition using Resnet or other pre-trained classifier with appropriate weights  
-- Better approaches to determine if tabular data could be more effectively used i.e. ensemble models  
-- Exploring data to find a better parametric approximation of real FVC progression or classification problem (i.e. quartiles)
-- Exploring other techniques for lung segmentation
-- Determining when mixed networks are better than individual approaches - here it seems the perceptron performance reduced the CNN; for what kinds of problems or data sources would it improve outcomes?  
+### Further Work
+  
+While we learned a lot from this exercise and were surprised by the performance we were able to obtain from an image-only model, this approach really only scratches the surface of the work that could be done on this problem. A few areas for exploration include:
+
+- Optimizing image recognition with a pre-trained CNN - as beginners to computer vision we applied a fairly simple  CNN structure, however if we had the time and experience we would have definitely experimented with these more.  
+- Medical Imaging Optimized CNN Structures - Another interesting avenue to improving these results would be applying a CNN structure more medical imaging. [This publication](https://www.nature.com/articles/s41598-019-42557-4) presents an intriguing architecture, but duplicating the CNN in Keras proved beyond our abilities.  
+- Better approaches to Mixed Inputs - One big unknown for us in this work was determining how to get the most out of the limited predictive value of the tabular data. While our concatenate approach didn't add any benefits, we'd be interested to learn whether another approach could have boosted the power of the CNN rather than diminishing it as we saw in our Mixed Input model.  
+- Exploring other techniques for lung segmentation - To answer the question of whether our masking algorithm was bad, or whether there actually are any other features outside the lungs which were adding predictive value.
+=
 
 **Conclusions**  
   
-This task is particularly challenging - limited data, limited measurements, sparse info on baseline characteristics. CNN performance was impressive and improved over tabular data; approaching range of clinical utility but still likely too low in practice. It would need to be validated on larger datasets. Nonetheless, CNN did not improve when we adjusted the image processing. Despite the difficulty, our results are encouraging. The CNN model should be considered for use alongside demographic/patient characteristics for tasks that involve informed predictions of likely disease progression at baseline and understanding/segmenting patients.
+All and all this was an interesting challenge. While we undoubtedly chose a challenging topic for our first real attempt at computer vision, we were nonetheless intrigued by the results and learned a great deal. It's fair to say that these results are not ready for clinical utilization. From the clinician's perspective, a model with 70% accuracy would likely only be usable if it was possible to determine in advance which kinds of patients could be expected to be misclassified, which was beyond our work. That said, we were intrigued that imaging a CNN was able to correctly predict course of disease within the 95% CI for 7/10ths of our test patients. This approach is not commonly employed in clinical trial analysis and biostatistics today; but given the amount of medical imaging information available from previously completed studies, there is likely a lot to be gained by further studying this approach. We would recommend that researchers consider employing CNNs alongside demographic/patient characteristics for tasks that involve informed predictions of likely disease progression at baseline and understanding/segmenting patients.
 
 **Sources**
 ‪
