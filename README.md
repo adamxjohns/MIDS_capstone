@@ -42,8 +42,12 @@ Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lu
  
  - Age looks to be quite normally distributed around 65-70
  
- - The most common measurement time was 50-60 weeks 
+ - The most common measurement time was 50-60 weeks  
  
+To explore feature importance on Future FVC values, we explored various of features as predictors of future FVC values via Recursive Feature Elimination techniques. Compared to previous FVC and previous Percent (a compositite of FVC); none of these variales had significant predictive value for determining future FVC values.
+
+
+  ![Feature importance via Recursive Feature Eliminiation](/JPGs/feature_importance.png) 
    
    
  ### CT Scan EDA 
@@ -106,15 +110,15 @@ According to the internet, this is how you do regression in Keras.
 
   The Mixed Network involves taking the output of the second-to-last layers of the CNN and MLP prior to the linear output layer and concatenating them; then applying another dense(4) layer with relu activation and a linear output layer.  
   
-**A Note on Masking**
+*A Note on Masking*
   
-  When approaching our images initially, our hypothesis was that since we were dealing with a lung disease, our model accuracy would improve if we were able to run the CNN on lung tissue only. As such, we applied a masking algorithm adapted from https://www.raddq.com/dicom-processing-segmentation-visualization-in-python/ to pre-process the images and replace all non-lung tissue with houndsfield units representing water. 
+  When approaching our images initially, our hypothesis was that since we were dealing with a lung disease, our model accuracy would improve if we were able to run the CNN on lung tissue only. As such, we applied a masking algorithm adapted from [this guide to DICOM image processing](https://www.raddq.com/dicom-processing-segmentation-visualization-in-python/) to pre-process the images and replace all non-lung tissue with houndsfield units representing water. 
 
 ### Model Training  
   
   When training the models, one important thing to note is that the inputs of the CNN and MLP are distinct, but the network needs to see the same information corresponding to the same individual, so it's important to maintain the association between target, image and tabular data corresponding to the same patient in your training pipeline.  
   
-  Another important thing to note regarding training is that the Keras Sequence object (https://www.tensorflow.org/api_docs/python/tf/keras/utils/Sequence) is a wonderful thing; using the sequence class allowed us to train our models on an average of 24,000 sampled CT slices in less than 30 seconds time. This significantly increased the model training accuracy over a subsample of images cached in RAM and also increased the speed.  
+  Another important thing to note regarding training is that the [Keras Sequence object](https://www.tensorflow.org/api_docs/python/tf/keras/utils/Sequence) is a wonderful thing; using the sequence class allowed us to train our models on roughly 24,000 sampled CT slices in less than 30 seconds' time. This significantly decreased model loss and increased accuracy over a subsample of images cached in RAM; it likely wouldn't have been possible to find enough affordable RAM to complete the exercise otherwise. 
 
   Lastly, when training, we decided to address the imbalance of CT slices between patients by randomly sampling slices from the whole train/test set during each model epoch. This would ensure an approximately equal distribution of slices for each patient. While there was still less image variation available for model training from the patients with fewer slices, we at least didn't end up with bias due to introducing fewer examples from those patients in our training runs.
 
