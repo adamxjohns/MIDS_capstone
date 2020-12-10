@@ -163,6 +163,7 @@ Lastly, the final surprise here was that the tabular data did not improve the pe
 This task is particularly challenging - limited data, limited measurements, sparse info on baseline characteristics. CNN performance was impressive and improved over tabular data; approaching range of clinical utility but still likely too low in practice. It would need to be validated on larger datasets. Nonetheless, CNN did not improve when we adjusted the image processing. Despite the difficulty, our results are encouraging. The CNN model should be considered for use alongside demographic/patient characteristics for tasks that involve informed predictions of likely disease progression at baseline and understanding/segmenting patients.
 
 **Sources**
-‪François Collet (2017). "Deep Learning with Python". Manning Publications.
-DICOM Processing and Segmentation in Python. https://www.raddq.com/dicom-processing-segmentation-visualization-in-python/
+‪
+ François Collet (2017). "Deep Learning with Python". Manning Publications.
+ DICOM Processing and Segmentation in Python. https://www.raddq.com/dicom-processing-segmentation-visualization-in-python/
 
