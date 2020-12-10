@@ -101,7 +101,7 @@ The structure of our mixed data neural network includes a convolutional neural n
   
 According to the internet, this is how you do regression in Keras?  
   
-**Concatenate Layer and Combined Model
+**Concatenate Layer and Combined Model**
 
 The Mixed Network involves taking the output of the second-to-last layers of the CNN and MLP prior to the linear output layer and concatenating them; then applying another dense(4) layer with relu activation and a linear output layer.  
   
@@ -136,27 +136,13 @@ There were a number of interesting findings from these results. First, regarding
 Regarding the masking, while our initial hypothesis was that the masking would improve the results by limiting training to the disease site only, it actually reduced the success of the predictions significantly. We aren't certain why this is, but two possible hypotheses are that either the masking algorithm itself could stand to be improved; or, alternately that the model is learning from other features outside the lungs. This is a particularly intriguting hypothesis as theoretically other morphological features that the CNN can detect could be associated with better or worse prediction.  
 Lastly, the final surprise here was that the tabular data did not improve the performance beyond the CNN on its own. One straightforward hypothesis to explain this is that the poor performance of the MLP didn't add much to the CNN, and given that our network does not apply any weighting to the individual results the drawbacks from the MLP performance outweighed the information gain. 
 
-**Our Best Model's Successful Predictions**
+**Some of our Best Model's Successful Predictions**
+![Model Target](/JPGs/successes.png)  
+  
+**And a few of its noble failures**  
+![Model Target](/JPGs/failure.png)  
 
 
-**CNN Development Steps**  
-1) DICOM image loading and processing function development
-2) First CNN - describe architecture and initial performance
-3) Functions to assess results - b/c the MAE loss is hard to interpret and the test data from the Kaggle competition only includes one FVC measurement per patient. Functions take a fixed number of images, calculate slope for each image, and deliver a final slope as mean of all predicted slopes from patient images
-4) Masking Images
-5) Sequence loader to reduce RAM and make it possible to train model on all images
-5) Tuning and optimizing CNN - updating neural network with batch normalization and tuning steps
-
-**Mixed Model Development Steps**  
-1) Building Linear Regression MLP
-2) Validating against standard Sklearn linear regression
-3) Mixed Model - Concatenate and output layers
-4) Tuning Mixed Model - highly difficult
-
-**Results**  
-- CNN performance: 70.5% prediction of FVC slope within 95% CI for test data  
-- MLP performance: 59% (approximate - update with final notebook results)  
-- Mixed Network: 63% (approximate - update with final notebook results)  
 
 **Further Work**  
 - Optimizing image recognition using Resnet or other pre-trained classifier with appropriate weights  
