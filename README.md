@@ -77,17 +77,18 @@ The number ranges from 12 slices per patient to 1018, with a median of 94.
   
 ### Defining the Model Outcome and Metrics
 
-When definingng the endpoint for our model, a number of factors were important. First, in keeping with the original Kaggle competition we wanted to see how closely we could predict the specific course of the disease and how close we could get to determining an actual FVC measurement for a given point in time. This ruled out a classification approach and directed us toward regression. Secondly, because patient measurements and follow up are not uniform, we wanted to choose an endpoint to the model that incorporates time as a function.  
+When definingng the endpoint for our model, a number of factors were important. First, in keeping with the original Kaggle competition we wanted to see how closely we could predict the specific course of the disease and how close we could get to determining any patients' actual FVC measurement for a given point in time. This ruled out a classification approach and directed us toward regression. Secondly, because patient measurements and follow up are not uniform, we wanted to choose an outcome variable expressed as a function of time to avoid having to choose a single time cutoff and needing to discard subsequent follow up data, or needing to impute between measurements due to the nonstandard follow-up intervals. After some debate we decided to model FVC decline as a function of time expressed by the Odinary Least Squares slope of each patients' FVC measurements.
+  
 This approach has a few pros and cons, as follows:  
 
-| **Model Outcome** | Predict the linear decay of FVC measurements as expressed by the least squares slope of each patient                                                                                          |
+| **Model Outcome** | Predict the linear decay of FVC expressed by OLS slope                                                                                        |
 |------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |          **Pros** | - Meaningful measurement that can be easily interpreted and be visualized - Avoids issue of non-uniform measurement times and follow up                                                       |
 |          **Cons** | - High degree of variability in measurements means that slope doesn't actually fit the measurements that well - More measurements at the start can skew the slope towards earlier measurements | 
   
- Our chosen loss function was Mean Average Error (MAE), expressed as the difference between the predicted and actual slope. However, since MAE doesn't give us a great degree of transparency, we decided to further assess model performance by another success metric: The number of slopes predicted within the 95% confidence interval of the actual OLS slope.  
+ Our chosen loss function for model training was Mean Average Error (MAE), expressed as the difference between the predicted and actual slope. However, since MAE doesn't give us a great degree of transparency, we decided to assess model performance by another success metric: The number of slopes predicted within the 95% confidence interval of the actual OLS slope.  
  
-  On an individual patient basis, we'd be trying to predict a line as close to the true OLS slope (in blue below) as possible, and scoring our results on the basis of how many we got within the CIs (in red).  
+  On an individual patient basis, we'd be training our model to predict the OLS slope (in blue below), and scoring our results on the basis of whether or not we could achieve a prediction within the confidence intervals (in red).  
  
  ![Model Target](/JPGs/target.png)  
 
