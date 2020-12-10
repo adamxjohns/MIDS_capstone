@@ -46,7 +46,7 @@ Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lu
  
    
    
- ### CT Scan EDA  
+ ### CT Scan EDA 
    
  Wrapping our heads around the CT Scans took us a little while. CTs use a .dicom image format. They're composed of a number of ordered 2d, 512x512 slices which, when put together, form a 3d image. Looking at a series of images over time can show changes in body position and can allow you to get a sense of the differing shape of the lungs during inhalation and exhalation.
   
@@ -94,7 +94,7 @@ The full data processing pipeline is included in our notebook repo, but here's a
   
   The structure of our mixed data neural network includes a convolutional neural network to learn features from the images, a multi-layer perceptron to do Keras's version of linear regression on the tabular data, and a concatenate layer to combine the two outputs. We chose Keras because we are noobs.
   
-**CNN**  
+<ins>**CNN**</ins>  
   
   The most important thing to note about our CNN structure is that it's very much a NOOB CNN. It takes 2d slices as the the input shape and applies 16-32-64 filters with relu activation, batch normalization and Max Pooling 2D, then Flatten, Dense(16), relu, another batch normalization, and dropout, another Dense(4) layer and a linear output layer. This structure is in no way optimized for medical imaging and from what we can understand (which is limited) it's basically an all-purpose detector of stuff in images.  
   
