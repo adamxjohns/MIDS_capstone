@@ -142,7 +142,7 @@ According to the internet, this is how you do regression in Keras.
 |-----------------------------:|:-----------------------------------------------------------------:|
 |                      **MLP** | 56.8% (25 of 44)                                                  |
 |   **CNN with Masked Images** | 54.5% (24 of 44)                                                  |
-| **CNN with Unmasked Images** | 72.7% (32 of 44)                                                  |
+| **CNN with Unmasked Images** | **72.7% (32 of 44)**                                                  |
 |              **Mixed Input** | 65.9% (29 of 44)                                                  |
   
   There were a number of interesting findings from these results. First, regarding the MLP, while the model was learning and predicting distinct slopes for each set of tabular data, it didn't do great. This likely reflects the findings from our earlier machine learning experiments that the amount of explained variance in the FVC decay from this tabular data alone is low, possibly because the information provided in the data is very limited.  
@@ -171,15 +171,11 @@ While we learned a lot from this exercise and were surprised by the performance 
 - Medical Imaging Optimized CNN Structures - Another interesting avenue to improving these results would be applying a CNN structure more medical imaging. [This publication](https://www.nature.com/articles/s41598-019-42557-4) presents an intriguing architecture, but duplicating the CNN in Keras proved beyond our abilities.  
 - Better approaches to Mixed Inputs - One big unknown for us in this work was determining how to get the most out of the limited predictive value of the tabular data. While our concatenate approach didn't add any benefits, we'd be interested to learn whether another approach could have boosted the power of the CNN rather than diminishing it as we saw in our Mixed Input model.  
 - Exploring other techniques for lung segmentation - To answer the question of whether our masking algorithm was bad, or whether there actually are any other features outside the lungs which were adding predictive value.
-=
+
 
 **Conclusions**  
   
 All and all this was an interesting challenge. While we undoubtedly chose a challenging topic for our first real attempt at computer vision, we were nonetheless intrigued by the results and learned a great deal. It's fair to say that these results are not ready for clinical utilization. From the clinician's perspective, a model with 70% accuracy would likely only be usable if it was possible to determine in advance which kinds of patients could be expected to be misclassified, which was beyond our work. That said, we were intrigued that imaging a CNN was able to correctly predict course of disease within the 95% CI for 7/10ths of our test patients. This approach is not commonly employed in clinical trial analysis and biostatistics today; but given the amount of medical imaging information available from previously completed studies, there is likely a lot to be gained by further studying this approach. We would recommend that researchers consider employing CNNs alongside demographic/patient characteristics for tasks that involve informed predictions of likely disease progression at baseline and understanding/segmenting patients.
 
-**Sources**
-‪
- François Collet (2017). "Deep Learning with Python". Manning Publications.
- DICOM Processing and Segmentation in Python. https://www.raddq.com/dicom-processing-segmentation-visualization-in-python/
- Houndsfield Units - Scale of HU, CT numbers. http://radclass.mudr.org/content/hounsfield-units-scale-hu-ct-numbers
+
 
