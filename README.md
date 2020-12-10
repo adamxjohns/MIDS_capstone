@@ -105,7 +105,7 @@ According to the internet, this is how you do regression in Keras?
 
 The Mixed Network involves taking the output of the second-to-last layers of the CNN and MLP prior to the linear output layer and concatenating them; then applying another dense(4) layer with relu activation and a linear output layer.  
   
-### A Note on Masking  
+**A Note on Masking**
   
 When approaching our images initially, our hypothesis was that since we were dealing with a lung disease, our model accuracy would improve if we were able to run the CNN on lung tissue only. As such, we applied a masking algorithm adapted from https://www.raddq.com/dicom-processing-segmentation-visualization-in-python/ to pre-process the images and replace all non-lung tissue with houndsfield units representing water. 
 
@@ -121,7 +121,7 @@ Lastly, when training, we decided to address the imbalance of CT slices between 
   
   To determine the likely slope based on the aggregate of predictions across slices, and without having to do more sophisticated image processing to determine which slices were most likely to provide the best predictions, we did our model inference on the basis of the average of the total predicted slopes for each patient's individual slices. When assessing the number of slices required to get a consistent inference, we started at 20 and worked our way up to all of them. We hit on 40 images as a number that results in consistent results across sample draws but is still computationally manageable.
 
-### Results
+## Results
 
 After much arduous toil, our best model was **accurately able to predict the slope within the 95% confidence interval for 73% (32 of 44) of our test patients.**  The results of each of our models is outlined below:  
   
