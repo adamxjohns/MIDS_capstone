@@ -2,7 +2,7 @@
 
 ### UC Berkeley Spring 2020 MIDS Capstone Project
 
-This project was based on the Kaggle competition "OSIC Pulmonary Fibrosis Progression: Predict lung function decline" available at https://www.kaggle.com/c/osic-pulmonary-fibrosis-progression
+This project was based on the Kaggle competition ["OSIC Pulmonary Fibrosis Progression: Predict lung function decline"](https://www.kaggle.com/c/osic-pulmonary-fibrosis-progression).
 
 All notebooks were run on an AWS EC2 P3.2xlarge Deep Learning AMI (Ubuntu 16.04) Version 36.0 instance using a TensorFlow 2.3 with Python3 (CUDA 10.2 and Intel MKL-DNN) Environment.
 
@@ -15,7 +15,7 @@ Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lu
  
  The likely end users of this work would be clinicians who have access to patient CT scans and the required knowledge to interpret results and give patients counselling and direction based on the information. Such information could be used to direct treatment decisions, counsel patients, and potentially to direct recruitment for future clinical trials.
  
- As a personal goal, as individuals with some background in clinical trial analysis and biostatistics but very little experience in computer vision, we wanted to practice working with images and learn how combinng inaging with clinical/demographic data can enhance the task of predicting disease prognosis. 
+ One personal goal, as individuals with some background in clinical trial analysis and biostatistics but very little experience in computer vision, was to get some hands-on experience with images and computer vision, and learn how combining imaging with clinical/demographic data can enhance the job of predicting disease prognosis. 
  
  ## Understanding the Data  
    
