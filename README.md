@@ -73,15 +73,71 @@ This approach has a few pros and cons, as follows:
 |          **Pros** | - Meaningful measurement that can be easily interpreted and be visualized - Avoids issue of non-uniform measurement times and follow up                                                       |
 |          **Cons** | - High degree of variability in measurements means that slope doesn't actually fit the measurements that well - More measurements at the start so line is skewed towards earlier measurements | 
   
- Our chosen loss function was mean average error (expressed as the difference between the predicted and actual slope). However, as MAE as a loss function doesn't give us a great degree of transparency, we decided to further assess model performance by determining the number of patient slopes from the test data which were predicted within the 95% confidence interval of the actual slope measurement.  
+ Our chosen loss function was mean average error (expressed as the difference between the predicted and actual slope). However, as MAE as a loss function doesn't give us a great degree of transparency, we decided to further assess model performance by another success metric: The number of slopes predicted within the 95% confidence interval of the actual OLS slope.  
  
 On an individual patient basis, we'd be trying to predict a line as close to the true OLS slope (in blue below) as possible, and scoring our results on the basis of how many we got within the CIs (in red).  
  
  ![Model Target](/JPGs/target.png)  
 
 
-**Data Processing**  
-Calculate OLS slope for each patient, 25% Train/test split
+### Data Processing
+
+The full data processing pipeline is included in our notebook repo, but here's a brief summary of the steps we took:
+
+- Subset each patient's FVC and Week measurements and calculate the least squares slope as our target variable  
+- Encode the categorical variables representing gender and smoking status, standardize the numerical variables for baseline FVC and Percent, and concatenate them into a 1d vector
+- Load our images and convert the voxels to Houndsfield units
+- Apply a 25% train-test split
+
+### Model Components  
+  
+The structure of our mixed data neural network includes a convolutional neural network to learn features from the images, a multi-layer perceptron to do Keras's version of linear regression on the tabular data, and a concatenate layer to combine the two outputs. We chose Keras because we are noobs. Rather than attempt a 3d CNN on full images, which was too advanced for us, we decided to randomly sample 2d slices associated with the corresponding target value for each patient for training, and use the average of the predicted slopes for that patient's scan for inference. When performing inference to test 
+  
+**CNN**  
+  
+  The most important thing to note about our CNN structure is that it's very much a NOOB CNN. It takes the input shape and applies 16-32-64 filters with relu activation, batch normalization and Max Pooling 2D, then Flatten, Dense(16), relu, another batch normalization, and dropout. It includes a linear output layer if run alone, or a Dense(4) layer to match the output of the MLP for the mixed model. This structure is in no way optimized for medical imaging and from what I can understand (which is limited) it's basically an all-purpose detector of stuff in images. The one thing to note here is that our original structure (another all purpose image-stuff-detector) did not apply batch normalization and thus did not actually learn. Adding this in seems to have done the trick.  
+  
+**MLP**
+  
+According to the internet, this is how you do regression in Keras?  
+  
+**Concatenate Layer and Combined Model
+
+The Mixed Network involves taking the output of the second-to-last layers of the CNN and MLP prior to the linear output layer and concatenating them; then applying another dense(4) layer with relu activation and a linear output layer.  
+  
+### A Note on Masking  
+  
+When approaching our images initially, our hypothesis was that since we were dealing with a lung disease, our model accuracy would improve if we were able to run the CNN on lung tissue only. As such, we applied a masking algorithm adapted from https://www.raddq.com/dicom-processing-segmentation-visualization-in-python/ to pre-process the images and replace all non-lung tissue with houndsfield units representing water. 
+
+### Model Training  
+  
+When training the models, one important thing to note is that the inputs of the CNN and MLP are distinct, but the network needs to see the same information corresponding to the same individual, so it's important to maintain the association between target, image and tabular data corresponding to the same patient in your training pipeline.  
+  
+Another important thing to note regarding training is that the Keras Sequence object (https://www.tensorflow.org/api_docs/python/tf/keras/utils/Sequence) is a wonderful thing; using the sequence class allowed us to train our models on an average of 24,000 sampled CT slices in less than 30 seconds time. This significantly increased the model training accuracy over a subsample of images cached in RAM and also increased the speed.  
+
+Lastly, when training, we decided to address the imbalance of CT slices between patients by randomly sampling slices from the whole train/test set during each model epoch. This would ensure an approximately equal distribution of slices for each patient. While there was still less image variation available for model training from the patients with fewer slices, we at least didn't end up with bias due to introducing fewer examples from those patients in our training runs.
+
+### Model Inference for 95% CI Success Measure  
+  
+  To determine the likely slope based on the aggregate of predictions across slices, and without having to do more sophisticated image processing to determine which slices were most likely to provide the best predictions, we did our model inference on the basis of the average of the total predicted slopes for each patient's individual slices. When assessing the number of slices required to get a consistent inference, we started at 20 and worked our way up to all of them. We hit on 40 images as a number that results in consistent results across sample draws but is still computationally manageable.
+
+### Results
+
+After much arduous toil, our best model was **accurately able to predict the slope within the 95% confidence interval for 73% (32 of 44) of our test patients.**  The results of each of our models is outlined below:  
+  
+|                    **Model** | **Best Run Accuracy**   (% slopes predicted within 95% CI of OLS) |
+|-----------------------------:|:-----------------------------------------------------------------:|
+|                      **MLP** | 56.8% (25 of 44)                                                  |
+|   **CNN with Masked Images** | 54.5% (24 of 44)                                                  |
+| **CNN with Unmasked Images** | 72.7% (32 of 44)                                                  |
+|              **Mixed Input** | 65.9% (29 of 44)                                                  |
+  
+There were a number of interesting findings from these results. First, regarding the MLP, while the model was learning and predicting distinct slopes for each set of tabular data, it didn't do great. This likely reflects the findings from our earlier machine learning experiments that the amount of explained variance in the FVC decay from this tabular data alone is low.  
+Regarding the masking, while our initial hypothesis was that the masking would improve the results by limiting training to the disease site only, it actually reduced the success of the predictions significantly. We aren't certain why this is, but two possible hypotheses are that either the masking algorithm itself could stand to be improved; or, alternately that the model is learning from other features outside the lungs. This is a particularly intriguting hypothesis as theoretically other morphological features that the CNN can detect could be associated with better or worse prediction.  
+Lastly, the final surprise here was that the tabular data did not improve the performance beyond the CNN on its own. One straightforward hypothesis to explain this is that the poor performance of the MLP didn't add much to the CNN, and given that our network does not apply any weighting to the individual results the drawbacks from the MLP performance outweighed the information gain. 
+
+**Our Best Model's Successful Predictions**
+
 
 **CNN Development Steps**  
 1) DICOM image loading and processing function development
