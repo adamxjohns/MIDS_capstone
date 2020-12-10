@@ -4,18 +4,18 @@
 
 This project was based on the Kaggle competition ["OSIC Pulmonary Fibrosis Progression: Predict lung function decline"](https://www.kaggle.com/c/osic-pulmonary-fibrosis-progression).
 
-All notebooks were run on an AWS EC2 P3.2xlarge Deep Learning AMI (Ubuntu 16.04) Version 36.0 instance using a TensorFlow 2.3 with Python3 (CUDA 10.2 and Intel MKL-DNN) Environment.
+All notebooks were run on an AWS EC2 P3.2xlarge Deep Learning AMI (Ubuntu 16.04) Version 36.0 instance using a TensorFlow 2.3 with Python3 (CUDA 10.2 and Intel MKL-DNN) Environment.  
 
 ## Background
-Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lung tissue becomes damaged and scarred. As the disease worsens, patients become progressively more short of breath. The disease progresses at different rates and it is difficult to define a patient's likely prognosis early on in the disease.  
+Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lung tissue becomes damaged and scarred. As the disease worsens, patients become progressively more short of breath. The disease progresses at different rates and it is difficult to assess and accurately predict survival time for patients, or determine whether an individual case will progress gradually or rapidly ([reference](https://www.thoracic.org/patients/lung-disease-week/2015/pulmonary-fibrosis-week/general-info.php)).   
 
 ## Project Goal
   
- Our goal for this project was to develop an approach to predict decline in lung function as measured by Forced Vital Capacity (FVC) over time based on clinical/demographic characteristics and baseline CT scan images. Reasoning that the clinical usefulness of this algorithm would increase the closer to initial diagnosis it could be applied, we aimed at making use of as little follow-up information as possible and, ideally, to use baseline information only.
+ Our goal for this project was to develop an approach to predict decline in lung function as measured by Forced Vital Capacity (FVC) over time based on clinical/demographic characteristics and baseline CT scan images. Reasoning that the clinical usefulness of this algorithm would increase the closer to initial diagnosis it could be applied, we aimed at making use of as little follow-up information as possible and, ideally, to use baseline information only.  
  
- The likely end users of this work would be clinicians who have access to patient CT scans and the required knowledge to interpret results and give patients counselling and direction based on the information. Such information could be used to direct treatment decisions, counsel patients, and potentially to direct recruitment for future clinical trials.
+ The likely end users of this work would be clinicians who have access to patient CT scans and the required knowledge to interpret results and give patients counselling and direction based on the information. Such information could be used to direct treatment decisions, counsel patients, and potentially to direct recruitment for future clinical trials.  
  
- One personal goal, as individuals with some background in clinical trial analysis and biostatistics but very little experience in computer vision, was to get some hands-on experience with images and computer vision, and learn how combining imaging with clinical/demographic data can enhance the job of predicting disease prognosis. 
+ One personal goal, as individuals with some background in clinical trial analysis and biostatistics but very little experience in computer vision, was to get some hands-on experience with images and computer vision, and learn how combining imaging with clinical/demographic data can enhance the job of predicting disease prognosis.  
  
  ## Understanding the Data  
    
@@ -60,7 +60,7 @@ To explore feature importance on Future FVC values, we explored various of featu
   
 ![CT animation](/JPGs/gif_ID00165637202237320314458.gif)  
   
-The converting the standard CT measurement of Voxels to Houndsfield units (HUs) the scale of the individual measurement can actually be interpreted to show the tissue composition of the picture, with an HU of zero indicating water at standard temperature and pressure, -1000 indicating air, and +2000 indicating dense bone. For our modelling we converted all the image values to HUs.  
+The converting the standard CT measurement of Voxels to Houndsfield units (HUs) the scale of the individual measurement can actually be interpreted to show the tissue composition of the picture, with an HU of zero indicating water at standard temperature and pressure, -1000 indicating air, and +2000 indicating dense bone. For our modelling we converted all the image values to HUs.  [For more on Houndsfield units we'd recommend this great resource](https://www.sciencedirect.com/topics/medicine-and-dentistry/hounsfield-scale).
 
 We have 33,025 slice images available across our 176 patients. Looking at the distribution of the number of slices available per patient, once again we can see that it varies quite widely:
 
@@ -72,7 +72,7 @@ The number ranges from 12 slices per patient to 1018, with a median of 94.
 
 ## Mixed Input Neural Network Model  
   
- Our approach was inspired by Laura Lewis's work on [predicting accident locations with mixed neural networks](https://heartbeat.fritz.ai/building-a-mixed-data-neural-network-in-keras-to-predict-accident-locations-d51a63b738cf).  
+ Our approach is indebted to Laura Lewis's work on [predicting accident locations with mixed neural networks](https://heartbeat.fritz.ai/building-a-mixed-data-neural-network-in-keras-to-predict-accident-locations-d51a63b738cf), and to [Deep Learning with Python](https://www.manning.com/books/deep-learning-with-python), an invaluable beginner's resource.  
   
   
 ### Defining the Model Outcome and Metrics
