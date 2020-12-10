@@ -47,7 +47,7 @@ Pulmonary fibrosis is a progressive, incurable lung disease which occurs when lu
 To explore feature importance on Future FVC values, we explored various of features as predictors of future FVC values via Recursive Feature Elimination techniques. Compared to previous FVC and previous Percent (a compositite of FVC); none of these variales had significant predictive value for determining future FVC values.
 
 
-  ![Feature importance via Recursive Feature Eliminiation](/JPGs/feature_importance.png) 
+  ![Feature importance via Recursive Feature Eliminiation](/JPGs/features_importance.png) 
    
    
  ### CT Scan EDA 
