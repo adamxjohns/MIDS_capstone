@@ -2,7 +2,7 @@
 
 ### UC Berkeley Spring 2020 MIDS Capstone Project
 
-### Adam Johns, J. Marcial Nava-Ponce and Tosin Akinpelu
+### Adam Johns, Marcial Nava, and Tosin Akinpelu
 
 This project was based on the Kaggle competition ["OSIC Pulmonary Fibrosis Progression: Predict lung function decline"](https://www.kaggle.com/c/osic-pulmonary-fibrosis-progression).
 
